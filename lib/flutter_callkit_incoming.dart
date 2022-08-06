@@ -14,6 +14,8 @@ class FlutterCallkitIncoming {
   static const EventChannel _eventChannel =
       const EventChannel('flutter_callkit_incoming_events');
 
+  static dynamic lastShownCallKitIncomingParams;
+
   /// Listen to event callback from [FlutterCallkitIncoming].
   ///
   /// FlutterCallkitIncoming.onEvent.listen((event) {
@@ -37,6 +39,7 @@ class FlutterCallkitIncoming {
   /// Show Callkit Incoming.
   /// On iOS, using Callkit. On Android, using a custom UI.
   static Future showCallkitIncoming(dynamic params) async {
+    lastShownCallKitIncomingParams = params;
     await _channel.invokeMethod("showCallkitIncoming", params);
   }
 
